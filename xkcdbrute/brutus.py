@@ -2,14 +2,14 @@
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
-# modification, are permitted provided that the following conditions are met: 
+# modification, are permitted provided that the following conditions are met:
 #
 # 1. Redistributions of source code must retain the above copyright notice, this
-#    list of conditions and the following disclaimer. 
+#	list of conditions and the following disclaimer.
 # 2. Redistributions in binary form must reproduce the above copyright notice,
-#    this list of conditions and the following disclaimer in the documentation
-#    and/or other materials provided with the distribution. 
-# 
+#	this list of conditions and the following disclaimer in the documentation
+#	and/or other materials provided with the distribution.
+#
 # THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
 # ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
 # WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -29,11 +29,11 @@ import time
 import re
 import multiprocessing
 
-from common import target, symbols
+from xkcdbrute.common import target, symbols
 
 # Controller address
-host_addr = 'beef.olin.edu'
-host_port = 1013
+host_addr = 'rancor.csh.rit.edu'
+host_port = 31373
 
 def hamming_distance(lh, rh):
 	lhb = bin(int(lh,16))[2:]
@@ -89,7 +89,9 @@ class Brutus(multiprocessing.Process):
 			print (self.number, text, score)
 			server.send(('%d,%s\n' % (score, text)).encode())
 
-def main():
+def main(server):
+	global host_addr
+	host_addr = server
 	processes = []
 	try:
 		cpus = multiprocessing.cpu_count() + 1
