@@ -81,11 +81,11 @@ class Brutus(multiprocessing.Process):
 				print('socket.error:', e)
 				time.sleep(5)
 				continue
-            try:
-                assignment = server.recv(4096)
-            except socket.error as e:
-                print('socket.error:', e)
-                continue
+			try:
+				assignment = server.recv(4096)
+			except socket.error as e:
+				print('socket.error:', e)
+				continue
 			while not '\n' in assignment.decode():
 				assignment = assignment + server.recv(4096)
 			(radix, minp, maxp) = assignment.decode().rstrip('\n').split(',')
