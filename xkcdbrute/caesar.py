@@ -97,7 +97,7 @@ def main():
 							state['min'] = dist
 							state['min_text'] = text
 							print('!! NEW MINIMUM: %d (%s)' % (dist, text))
-							requests.post("http://almamater.xkcd.com/?edu=olin.edu", {'hashable': text})
+							requests.post("http://almamater.xkcd.com/?edu=rit.edu", {'hashable': text})
 						state['results'].append((client_chunk[client], dist,text))
 						state.sync()
 					except Exception as e:
